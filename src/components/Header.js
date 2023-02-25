@@ -15,7 +15,7 @@ const sections = [
     anchor: "projects",
   },
   {
-    name: "Contact me",
+    name: "Contact Me",
     anchor: "contactme",
   }
 ]
@@ -45,7 +45,6 @@ const socials = [
 
 const Header = () => {
   const handleClick = (anchor) => () => {
-    console.log('click', anchor)
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
     if (element) {
@@ -67,6 +66,7 @@ const Header = () => {
       transitionDuration=".3s"
       transitionTimingFunction="ease-in-out"
       backgroundColor="#18181b"
+      zIndex={1}
     >
       <Box color="white" maxWidth="1280px" margin="0 auto">
         <HStack

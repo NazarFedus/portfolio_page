@@ -9,6 +9,17 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Box, HStack } from "@chakra-ui/react";
 
+const sections = [
+  {
+    name: "Projects",
+    anchor: "projects",
+  },
+  {
+    name: "Contact me",
+    anchor: "contactme",
+  }
+]
+
 const socials = [
   {
     icon: faEnvelope,
@@ -34,6 +45,7 @@ const socials = [
 
 const Header = () => {
   const handleClick = (anchor) => () => {
+    console.log('click', anchor)
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
     if (element) {
@@ -64,11 +76,11 @@ const Header = () => {
           alignItems="center"
         >
           <nav style={{display: "flex", gap: "15px"}}>
-            {socials.map((social) => <a href={social.url}><FontAwesomeIcon icon={social.icon}/></a>)}
+            {socials.map((social) => <a href={social.url} key={socials.indexOf(social)}><FontAwesomeIcon icon={social.icon}/></a>)}
           </nav>
           <nav>
             <HStack spacing={8}>
-              {/* Add links to Projects and Contact me section */}
+              {sections.map((section) => <button  key = {section.anchor} id={section.anchor} onClick={handleClick(section.anchor)}>{section.name}</button>)}
             </HStack>
           </nav>
         </HStack>

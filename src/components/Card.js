@@ -4,7 +4,6 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 const imgStyle = {
-  transform: "scale(0.5)",
   borderRadius: "10px",
   width: "100%",
 };
@@ -20,6 +19,8 @@ const container__content = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "flex-start",
+  alignItems: "flex-start",
+  padding: "20px",
 }
 
 const Card = ({ title, description, imageSrc }) => {
@@ -29,8 +30,7 @@ const Card = ({ title, description, imageSrc }) => {
       <Image src={imageSrc} alt={title} style={imgStyle}/>;
       <Heading as="h3" size="md">{title}</Heading>;
       <Text>{description}</Text>;
-      <Text>See more <FontAwesomeIcon icon={faArrowRight} /></Text>
-
+      <Text style={{cursor: 'pointer'}}>See more <FontAwesomeIcon icon={faArrowRight} /></Text>
     </VStack>
   </HStack>
   );

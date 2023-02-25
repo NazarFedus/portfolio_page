@@ -8,25 +8,25 @@ const projects = [
     title: "React Space",
     description:
       "Handy tool belt to create amazing AR components in a React app, with redux integration via middleware️",
-    getImageSrc: () => require("../images/js.png"),
+    getImageSrc: () => require("../images/firstphoto.jpeg"),
   },
   {
     title: "React Infinite Scroll",
     description:
       "A scrollable bottom sheet with virtualisation support, native animations at 60 FPS and fully implemented in JS land 🔥️",
-    getImageSrc: () => require("../images/nodejs.png"),
+    getImageSrc: () => require("../images/secondphoto.jpeg"),
   },
   {
     title: "Photo Gallery",
     description:
       "A One-stop shop for photographers to share and monetize their photos, allowing them to have a second source of income",
-    getImageSrc: () => require("../images/react.png"),
+    getImageSrc: () => require("../images/thirdphoto.jpeg"),
   },
   {
     title: "Event planner",
     description:
       "A mobile application for leisure seekers to discover unique events and activities in their city with a few taps",
-    getImageSrc: () => require("../images/typescript.jpeg"),
+    getImageSrc: () => require("../images/4photo.jpeg"),
   },
 ];
 

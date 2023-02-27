@@ -23,14 +23,14 @@ const container__content = {
   padding: "20px",
 }
 
-const Card = ({ title, description, imageSrc }) => {
+const Card = ({ title, description, imageSrc, url }) => {
   return (
   <HStack style={container}>
     <VStack style={container__content}>
       <Image src={imageSrc} alt={title} style={imgStyle}/>;
       <Heading as="h3" size="md">{title}</Heading>;
       <Text>{description}</Text>;
-      <Text style={{cursor: 'pointer'}}>See more <FontAwesomeIcon icon={faArrowRight} /></Text>
+      <Text style={{cursor: 'pointer'}}><a href={url}>See more</a> <FontAwesomeIcon icon={faArrowRight} /></Text>
     </VStack>
   </HStack>
   );

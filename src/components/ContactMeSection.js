@@ -21,11 +21,37 @@ const LandingSection = () => {
   const {isLoading, response, submit} = useSubmit();
   const { onOpen } = useAlertContext();
 
-  const formik = useFormik({
-    initialValues: {},
-    onSubmit: (values) => {},
-    validationSchema: Yup.object({}),
+  const validationSchema = Yup.object().shape({
+    name: Yup.string()
+              .min(2, 'Too short')
+              .max(50, 'Too long')
+              .required('Name is required'),
+    email: Yup.string()
+              .email('Email is invalid')
+              .required('Email is required'),
   });
+
+  const formik = useFormik({
+    initialValues: {name:'', email:''},
+    onSubmit: (values) => {
+      submit('https://formspree.io/f/xnqppqjw', values);
+    },
+    validationSchema: Yup.object({validationSchema}),
+  });
+
+
+
+  useEffect(() => {
+    if (response) {
+      onOpen(response.type, response.message);
+    }
+  }, [response]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    formik.handleSubmit();
+    submit('https://formspree.io/f/xnqppqjw', formik.values);
+  };
 
   return (
     <FullScreenSection
@@ -39,13 +65,15 @@ const LandingSection = () => {
           Contact me
         </Heading>
         <Box p={6} rounded="md" w="100%">
-          <form>
+          <form onSubmit={submitHandler}>
             <VStack spacing={4}>
               <FormControl isInvalid={false}>
                 <FormLabel htmlFor="firstName">Name</FormLabel>
                 <Input
                   id="firstName"
-                  name="firstName"
+                  name="name"
+                  onChange={formik.handleChange}
+                  // value={value.name}
                 />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
@@ -55,6 +83,8 @@ const LandingSection = () => {
                   id="email"
                   name="email"
                   type="email"
+                  onChange={formik.handleChange}
+                  // value={values.email}
                 />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
@@ -77,7 +107,7 @@ const LandingSection = () => {
                 />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
-              <Button type="submit" colorScheme="purple" width="full">
+              <Button type="submit" colorScheme="purple" width="full" disabled={true}>
                 Submit
               </Button>
             </VStack>

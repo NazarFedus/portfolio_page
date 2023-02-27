@@ -11,6 +11,7 @@ const useSubmit = () => {
   const [response, setResponse] = useState(null);
 
   const submit = async (url, data) => {
+     console.log('submitting', data)
     const random = Math.random();
     setLoading(true);
     try {
@@ -20,7 +21,7 @@ const useSubmit = () => {
       }
       setResponse({
         type: 'success',
-        message: `Thanks for your submission ${data.firstName}, we will get back to you shortly!`,
+        message: `Thanks for your submission ${data.name}, we will get back to you shortly!`,
       })
     } catch (error) {
       setResponse({

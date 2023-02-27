@@ -5,28 +5,32 @@ import Card from "./Card";
 
 const projects = [
   {
-    title: "React Space",
+    title: "React Online Store",
     description:
-      "Handy tool belt to create amazing AR components in a React app, with redux integration via middleware️",
-    getImageSrc: () => require("../images/firstphoto.jpeg"),
+      "Pet project to learn React by building something like online store",
+    getImageSrc: () => require("../images/online shopping.jpeg"),
+    url: "https://github.com/NazarFedus/app-react-"
   },
   {
-    title: "React Infinite Scroll",
+    title: "React Calculator",
     description:
-      "A scrollable bottom sheet with virtualisation support, native animations at 60 FPS and fully implemented in JS land 🔥️",
-    getImageSrc: () => require("../images/secondphoto.jpeg"),
+      "Pet project to learn React by building calculator with basic functionality",
+    getImageSrc: () => require("../images/calculator.png"),
+    url: "https://github.com/NazarFedus/React-Calculator"
   },
   {
-    title: "Photo Gallery",
+    title: "Project in progress",
     description:
-      "A One-stop shop for photographers to share and monetize their photos, allowing them to have a second source of income",
+      "",
     getImageSrc: () => require("../images/thirdphoto.jpeg"),
+    url: "#"
   },
   {
-    title: "Event planner",
+    title: "Project in progress",
     description:
-      "A mobile application for leisure seekers to discover unique events and activities in their city with a few taps",
+      "",
     getImageSrc: () => require("../images/4photo.jpeg"),
+    url: "#"
   },
 ];
 
@@ -53,6 +57,7 @@ const ProjectsSection = () => {
             title={project.title}
             description={project.description}
             imageSrc={project.getImageSrc()}
+            url={project.url}
           />
         ))}
       </Box>

@@ -20,7 +20,6 @@ import {useAlertContext} from "../context/alertContext";
 const LandingSection = () => {
   const {isLoading, response, submit} = useSubmit();
   const { onOpen } = useAlertContext();
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validationSchema = Yup.object().shape({
     name: Yup.string()
@@ -111,7 +110,7 @@ const LandingSection = () => {
                 />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
-              <Button disabled={isSubmitting} type="submit" colorScheme="purple" width="full" >
+              <Button type="submit" colorScheme="purple" width="full" >
                 Submit
               </Button>
             </VStack>

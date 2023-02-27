@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { useFormik } from "formik";
 import {
   Box,
@@ -20,6 +20,7 @@ import {useAlertContext} from "../context/alertContext";
 const LandingSection = () => {
   const {isLoading, response, submit} = useSubmit();
   const { onOpen } = useAlertContext();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validationSchema = Yup.object().shape({
     name: Yup.string()
@@ -29,10 +30,11 @@ const LandingSection = () => {
     email: Yup.string()
               .email('Email is invalid')
               .required('Email is required'),
+    message: Yup.string().required('Message is required'),
   });
 
   const formik = useFormik({
-    initialValues: {name:'', email:''},
+    initialValues: {name:'', email:'', message:''},
     onSubmit: (values) => {
       submit('https://formspree.io/f/xnqppqjw', values);
     },
@@ -49,7 +51,7 @@ const LandingSection = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    formik.handleSubmit();
+    formik.handleSubmit()
     submit('https://formspree.io/f/xnqppqjw', formik.values);
   };
 
@@ -73,7 +75,7 @@ const LandingSection = () => {
                   id="firstName"
                   name="name"
                   onChange={formik.handleChange}
-                  // value={value.name}
+                  onBlur={formik.handleBlur}
                 />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
@@ -84,7 +86,7 @@ const LandingSection = () => {
                   name="email"
                   type="email"
                   onChange={formik.handleChange}
-                  // value={values.email}
+                  onBlur={formik.handleBlur}
                 />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
@@ -101,13 +103,15 @@ const LandingSection = () => {
               <FormControl isInvalid={false}>
                 <FormLabel htmlFor="comment">Your message</FormLabel>
                 <Textarea
-                  id="comment"
-                  name="comment"
+                  id="message"
+                  name="message"
                   height={250}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
-              <Button type="submit" colorScheme="purple" width="full" disabled={true}>
+              <Button disabled={isSubmitting} type="submit" colorScheme="purple" width="full" >
                 Submit
               </Button>
             </VStack>

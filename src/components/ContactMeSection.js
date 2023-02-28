@@ -68,7 +68,7 @@ const LandingSection = () => {
         <Box p={6} rounded="md" w="100%">
           <form onSubmit={submitHandler}>
             <VStack spacing={4}>
-              <FormControl isInvalid={false}>
+              <FormControl isInvalid={!!formik.errors.name && formik.touched.name}>
                 <FormLabel htmlFor="firstName">Name</FormLabel>
                 <Input
                   id="firstName"

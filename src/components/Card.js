@@ -7,14 +7,6 @@ const imgStyle = {
   borderRadius: "10px",
   width: "100%",
 };
-
-const container = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  backgroundColor: "#2a4756",
-  borderRadius: "10px",
-}
 const container__content = {
   display: "flex",
   flexDirection: "column",
@@ -25,19 +17,27 @@ const container__content = {
 
 const Card = ({ title, description, imageSrc, url }) => {
   return (
-  <HStack style={container}>
-    <VStack style={container__content}>
-      <Image src={imageSrc} alt={title} style={imgStyle}/>;
-      <Heading as="h3" size="md">{title}</Heading>;
-      <Text>{description}</Text>;
-      <Text style={{cursor: 'pointer'}}><a href={url}>See more</a> <FontAwesomeIcon icon={faArrowRight} /></Text>
-    </VStack>
-  </HStack>
-  );
 
-  // Implement the UI for the Card component according to the instructions.
-  // You should be able to implement the component with the elements imported above.
-  // Feel free to import other UI components from Chakra UI if you wish to.
+    <VStack color="black" backgroundColor="white" cursor="pointer" borderRadius="xl" >
+      <Image src={imageSrc} alt={title} style={imgStyle}/>;
+      <VStack spacing={4} p={4} alignItems="flex-start">
+        <HStack justifyContent="space-between" alignItems="center">
+          <Heading as="h3" size="md">{title}</Heading>;
+        </HStack>
+        <Text color="#64748b" fontSize="lg">{description}</Text>
+        <HStack spacing={2} alignItems="center">
+          <Text style={{cursor: 'pointer'}}>
+            <a href={url}>See more</a>
+            <FontAwesomeIcon icon={faArrowRight} />
+          </Text>
+        </HStack>
+      </VStack>
+
+
+
+    </VStack>
+
+  );
 };
 
 export default Card;

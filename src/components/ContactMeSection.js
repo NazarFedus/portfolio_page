@@ -21,15 +21,14 @@ const LandingSection = () => {
   const {isLoading, response, submit} = useSubmit();
   const { onOpen } = useAlertContext();
 
-  const validationSchema = Yup.object().shape({
-    name: Yup.string()
-              .min(2, 'Too short')
-              .max(50, 'Too long')
-              .required('Name is required'),
+  const validationSchema = Yup.object({
+    name: Yup.string().required('Name is required'),
     email: Yup.string()
               .email('Email is invalid')
               .required('Email is required'),
-    message: Yup.string().required('Message is required'),
+    message: Yup.string()
+                .min(25, "Must be at least 25 characters")
+                .required('Message is required'),
   });
 
   const formik = useFormik({
@@ -45,6 +44,9 @@ const LandingSection = () => {
   useEffect(() => {
     if (response) {
       onOpen(response.type, response.message);
+      if (response.type === 'success') {
+        formik.resetForm();
+      }
     }
   }, [response]);
 
